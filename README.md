@@ -8,7 +8,10 @@ play all your music from a browser, and you may choose to cache any songs
 for offline playback at some later time.
 
 ## Install
-curl the raw install.sh file from github and pipe it to sh
+Just pop this bad boy in your terminal ;).
+```
+curl https://raw.github.com/nick-thompson/hoax/master/install.sh | sh
+```
 
 ## Usage
 ```

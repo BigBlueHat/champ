@@ -1,6 +1,37 @@
 #!/usr/bin/env node
 
-var hoax = require('..')
-  , args = require('optimist').argv._;
+var hoax      = require('..')
+  , fs        = require('fs')
+  , path      = require('path')
+  , argv      = require('optimist').argv
+  , args      = argv._
+  , showHelp  = argv.h || argv.help || args.length < 3;
 
+/**
+ * Display the usage information and
+ * exit the program.
+ */
+function displayUsage () {
+  var usage = fs.readFileSync(path.resolve(__dirname, 'usage.txt'), 'utf8');
+  process.stdout.write(usage);
+  process.exit(1);
+}
+
+/**
+ * Validate the input arguments. Write to stderr
+ * and exit on malformed inputs.
+ */
+function valid (command, uri, directory) {
+  return true;
+}
+
+if (showHelp) return displayUsage();
+
+var command = args.shift()
+  , uri = args.shift()
+  , directory = args.join(' ');
+
+if (valid(command, uri, directory)) {
+  return hoax[command].call(null, uri, directory);
+}
 

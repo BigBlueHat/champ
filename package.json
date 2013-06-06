@@ -37,5 +37,8 @@
     "grunt-contrib-watch": "~0.2.0",
     "grunt": "~0.4.0"
   },
-  "keywords": []
+  "keywords": [],
+  "dependencies": {
+    "optimist": "~0.5.2"
+  }
 }

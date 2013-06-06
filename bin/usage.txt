@@ -1,0 +1,16 @@
+
+   Usage: hoax [options] {new, update} uri directory
+
+   Commands:
+     new                  Create a new database instance and import all valid
+                          tracks from the supplied directory.
+     update               Update an existing database instance with music from
+                          the supplied directory.
+
+   Arguments:
+     uri                  Database endpoint location.
+     directory            Root directory of your music folder.
+
+   Options:
+     -h, --help           output usage information
+

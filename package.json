@@ -21,7 +21,7 @@
       "url": "https://github.com/nick-thompson/hoax/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/hoax",
+  "main": "lib/index",
   "bin": {
     "hoax": "./bin/hoax"
   },

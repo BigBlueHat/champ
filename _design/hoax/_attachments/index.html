@@ -1,7 +1,33 @@
-<html>
+<!DOCTYPE html>
+<html ng-app>
 <head>
+
+	<meta charset="utf-8">
+	<title>Your Page Title Here :)</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+
 </head>
 <body>
-Hello world!
+
+  <ul ng-controller="LibraryController">
+    <li ng-repeat="track in tracks"><a href="#">{{ track.artist }}</a></li>
+  </ul>
+
+  <script type="text/javascript" src="scripts/vendor/angular.min.js"></script>
+  <script type="text/javascript" src="scripts/vendor/pouchdb-nightly.min.js"></script>
+  <script type="text/javascript" src="scripts/main.js"></script>
+
 </body>
 </html>

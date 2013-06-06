@@ -1,0 +1,13 @@
+GitPython==0.3.2.RC1
+argcomplete==0.5.4
+argh==0.23.1
+async==0.6.1
+couchdbkit==0.6.4
+distribute==0.6.28
+gitdb==0.5.4
+http-parser==0.8.1
+mutagen==1.21
+restkit==4.2.1
+smmap==0.8.2
+socketpool==0.5.2
+wsgiref==0.1.2

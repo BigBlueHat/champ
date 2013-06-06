@@ -36,13 +36,14 @@ trap 'trap_handler ${LINENO}' ERR
 # Download the Hoax repository.
 echo "Downloading Hoax...";
 git clone git://github.com/nick-thompson/hoax.git ${HOAX}
+cd ${HOAX}
 
 # Install the Hoax virtual environment.
 echo "Downloading virtualenv standalone..."
 curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.9.1.tar.gz
 tar xzf virtualenv-1.9.1.tar.gz
 echo "Creating the Hoax virtual environment..."
-python virtualenv-1.9.1/virtualenv.py ${HOAX}
+python virtualenv-1.9.1/virtualenv.py --distribute ${HOAX}
 echo "Installing dependencies..."
 ${HOAX}/bin/pip install -r ${HOAX}/requirements.txt
 

@@ -58,5 +58,5 @@ class Importer:
         # Giant _bulk_docs queries aren't gonna work here...
         # Gotta figure out something better than this.
         for track in self.tracks:
-            self.db.save_doc(track)
+            self.db.save_doc(track, encode_attachments=False)
 

@@ -54,5 +54,9 @@ class Importer:
         """
         Upload the track list to the database.
         """
-        self.db.bulk_save(self.tracks)
+        # Cloudant limits json request bodies to 64mb.
+        # Giant _bulk_docs queries aren't gonna work here...
+        # Gotta figure out something better than this.
+        for track in self.tracks:
+            self.db.save_doc(track)
 

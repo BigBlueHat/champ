@@ -22,6 +22,9 @@
     }
   ],
   "main": "lib/hoax",
+  "bin": {
+    "hoax": "./bin/hoax"
+  },
   "engines": {
     "node": ">= 0.8.0"
   },

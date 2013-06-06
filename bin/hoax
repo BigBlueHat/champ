@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+var hoax = require('..')
+  , args = require('optimist').argv._;
+
+

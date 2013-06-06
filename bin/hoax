@@ -22,6 +22,14 @@ function displayUsage () {
  * and exit on malformed inputs.
  */
 function valid (command, uri, directory) {
+  if (typeof hoax[command] != 'function') {
+    process.stderr.write('Invalid command.');
+    process.exit(1);
+  }
+  if (!fs.statSync(directory).isDirectory()) {
+    process.stderr.write('Invalid directory.');
+    process.exit(1);
+  }
   return true;
 }
 

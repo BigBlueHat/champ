@@ -12,5 +12,6 @@
      directory            Root directory of your music folder.
 
    Options:
-     -h, --help           output usage information
+     -h, --help           Output usage information.
+     -q, --quiet          Supress output to the console.
 

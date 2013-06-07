@@ -3,9 +3,8 @@
 var hoax      = require('..')
   , fs        = require('fs')
   , path      = require('path')
-  , utils     = require('../lib/utils')
   , check     = require('validator').check
-  , argv      = require('optimist').argv
+  , argv      = require('optimist').boolean(['h', 'help', 'q', 'quiet']).argv
   , args      = argv._;
 
 // Show the usage information if requested
@@ -15,6 +14,11 @@ if (argv.h || argv.help || args.length < 3) {
 
   process.stdout.write(usage);
   process.exit(1);
+}
+
+// Adjust the verbosity if needed
+if (argv.q || argv.quiet) {
+  hoax.utils.setVerbosity(0);
 }
 
 var command = args.shift()
@@ -34,7 +38,7 @@ try {
     throw new Error('Invalid directory.');
   }
 } catch (e) {
-  return utils.error(e.message);
+  return hoax.utils.error(e.message);
 }
 
 // Run it

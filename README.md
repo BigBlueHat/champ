@@ -1,27 +1,80 @@
-# hoax [![Build Status](https://secure.travis-ci.org/nick-thompson/hoax.png?branch=master)](http://travis-ci.org/nick-thompson/hoax)
-
+# Hoax [![Build Status](https://secure.travis-ci.org/nick-thompson/hoax.png?branch=master)](http://travis-ci.org/nick-thompson/hoax)
 A personal music streaming server with offline caching capabilities.
 
 ## Getting Started
-Install the module with: `npm install hoax`
+Before you try building a Hoax server with your music collection, you
+will first want to make sure it's all properly tagged. Currently, Hoax
+relies on the ability to find MusicBrainz properties on the metadata tags
+attached to your songs. It is highly recommended that you download
+[MusicBrainz' Picard](http://beta.musicbrainz.org/doc/MusicBrainz_Picard) and
+follow the instructions to
+[tag your files](http://beta.musicbrainz.org/doc/How_to_Tag_Files_With_Picard).
 
-```javascript
-var hoax = require('hoax');
-hoax.awesome(); // "awesome"
+## Install
+```
+npm install -g hoax
 ```
 
-## Documentation
-_(Coming soon)_
+## Usage
+```
 
-## Examples
-_(Coming soon)_
+   Usage: hoax [options] {new, update} uri directory
+
+   Commands:
+     new                  Create a new database instance and import all valid
+                          tracks from the supplied directory.
+     update               Update an existing database instance with music from
+                          the supplied directory.
+
+   Arguments:
+     uri                  Database endpoint location.
+     directory            Root directory of your music folder.
+
+   Options:
+     -h, --help           output usage information
+
+```
+
+### New
+Create a new Hoax database with music from your collection.
+```
+hoax new http://localhost:5984/myhoax ~/path/to/my/music/library
+```
+
+### Update (Not Yet Implemented)
+Update an existing Hoax database when your library has been updated.
+```
+hoax update http://localhost:5984/myhoax ~/path/to/my/music/library
+```
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+Want to help me make this bad boy awesome? Great! Here's the rundown:
 
-## Release History
-_(Nothing yet)_
+* Hoax pushes everything through CouchDB.
+* The player itself is just a CouchApp.
+* Hoax uses PouchDB for interfacing with CouchDB from the client.
+    * Allows for easy client-side caching.
+
+In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## License
-Copyright (c) 2013 Nick Thompson  
-Licensed under the MIT license.
+Copyright (C) 2012 Nick Thompson
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of 
+this software and associated documentation files (the "Software"), to deal in 
+the Software without restriction, including without limitation the rights to 
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies 
+of the Software, and to permit persons to whom the Software is furnished to do 
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+SOFTWARE.
+

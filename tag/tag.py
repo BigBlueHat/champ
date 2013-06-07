@@ -27,14 +27,6 @@ def tag(track):
     for k, v in id3.iteritems():
         doc[k] = v[0]
     doc['_id'] = doc['musicbrainz_trackid']
-    # Build the attachment
-    f = open(track, 'rb')
-    data = encode(f.read())
-    doc['_attachments'] = dict()
-    doc['_attachments']['file.mp3'] = dict()
-    doc['_attachments']['file.mp3']['content_type'] = 'audio/mpeg'
-    doc['_attachments']['file.mp3']['data'] = data
-    f.close()
     return doc
 
 if __name__ == '__main__':

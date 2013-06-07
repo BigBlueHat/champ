@@ -5,16 +5,23 @@ var base = window.location.origin
 
 function LibraryController($scope) {
 
-  $scope.tracks = [{ artist: 'me' }, { artist: 'you' }];
-
-  db.allDocs({ include_docs: true }, function (err, response) {
-    console.log(response);
-    $scope.$apply(function () {
-      $scope.tracks = response.rows.map(function (row) {
-        return row.doc;
+  db.changes({
+    include_docs: true,
+    filter: 'hoax/meta',
+    complete: function (err, response) {
+      console.log(response);
+      $scope.$apply(function () {
+        $scope.tracks = response.results.map(function (row) {
+          row.doc.attachment = '/'
+            + name
+            + '/' 
+            + row.doc.musicbrainz_trackid
+            + '/file.mp3';
+          return row.doc;
+        });
+        console.log($scope.tracks);
       });
-      console.log($scope.tracks);
-    });
+    }
   });
 
 }

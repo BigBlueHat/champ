@@ -13,6 +13,8 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+
 	<link rel="shortcut icon" href="images/favicon.ico">
 	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
@@ -22,7 +24,15 @@
 <body>
 
   <ul ng-controller="LibraryController">
-    <li ng-repeat="track in tracks"><a href="#">{{ track.artist }}</a></li>
+    <li ng-repeat="track in tracks">
+    <a href="{{ track.attachment }}">
+        <div class="track">
+          <strong>{{ track.artist }}</strong>
+          <br/>
+          <span class="title">{{ track.title }}</span>
+        </div>
+      </a>
+    </li>
   </ul>
 
   <script type="text/javascript" src="scripts/vendor/angular.min.js"></script>

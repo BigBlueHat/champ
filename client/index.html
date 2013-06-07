@@ -13,6 +13,8 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+  <link rel="stylesheet" type="text/css" href="styles/base-min.css">
+  <link rel="stylesheet" type="text/css" href="styles/buttons-min.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 
 	<link rel="shortcut icon" href="images/favicon.ico">
@@ -23,15 +25,25 @@
 </head>
 <body>
 
-  <ul ng-controller="LibraryController">
-    <li ng-repeat="track in tracks">
-    <a href="{{ track.attachment }}">
-        <div class="track">
-          <strong>{{ track.artist }}</strong>
-          <br/>
-          <span class="title">{{ track.title }}</span>
-        </div>
-      </a>
+  <ul class="library" ng-controller="LibraryController">
+    <li ng-repeat="(artist, catalog) in library">
+      <div class="artist">
+        <strong>{{ artist }}</strong>
+      </div>
+      <ul class="catalog">
+        <li ng-repeat="(album, tracks) in catalog">
+          <div class="album">
+            <strong>{{ album }}</strong>
+          </div>
+          <ul class="album">
+            <li ng-repeat="track in tracks">
+              <div class="track">
+                <strong>{{ track.title }}</strong>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </li>
   </ul>
 

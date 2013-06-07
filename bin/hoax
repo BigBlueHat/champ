@@ -29,18 +29,21 @@ var command = args.shift()
 try {
   // Check the command
   if (typeof hoax[command] != 'function') {
-    throw new Error('Invalid command.');
+    throw new Error('invalid command');
   }
   // Check the uri. Errors on failure.
   check(uri).isUrl();
   // Check the directory
   if (!fs.statSync(dir).isDirectory()) {
-    throw new Error('Invalid directory.');
+    throw new Error('invalid directory');
   }
 } catch (e) {
-  return hoax.utils.error(e.message);
+  return hoax.utils.error(e.message.toLowerCase());
 }
 
 // Run it
-hoax[command].call(null, uri, dir);
+hoax[command].call(null, uri, dir, function (err) {
+  var msg = (err.message || JSON.stringify(err)).toLowerCase();
+  hoax.utils.error(msg);
+});
 

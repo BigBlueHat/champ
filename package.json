@@ -29,13 +29,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt nodeunit"
-  },
-  "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt": "~0.4.0"
+    "test": "make test"
   },
   "keywords": [],
   "dependencies": {
@@ -45,5 +39,8 @@
     "glob": "~3.2.1",
     "async": "~0.2.9",
     "pouchdb": "0.0.13"
+  },
+  "devDependencies": {
+    "mocha": "~1.10.0"
   }
 }

@@ -43,7 +43,11 @@ try {
 
 // Run it
 hoax[command].call(null, uri, dir, function (err) {
-  var msg = (err.message || JSON.stringify(err)).toLowerCase();
-  hoax.utils.error(msg);
+  if (err) {
+    var msg = (err.message || JSON.stringify(err)).toLowerCase();
+    hoax.utils.error(msg);
+  } else {
+    hoax.utils.log('done!');
+  }
 });
 

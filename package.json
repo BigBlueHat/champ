@@ -40,6 +40,8 @@
   "keywords": [],
   "dependencies": {
     "optimist": "~0.5.2",
-    "couchapp": "~0.9.1"
+    "couchapp": "~0.9.1",
+    "colors": "~0.6.0-1",
+    "validator": "~1.1.3"
   }
 }

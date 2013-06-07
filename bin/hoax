@@ -3,43 +3,40 @@
 var hoax      = require('..')
   , fs        = require('fs')
   , path      = require('path')
+  , utils     = require('../lib/utils')
+  , check     = require('validator').check
   , argv      = require('optimist').argv
-  , args      = argv._
-  , showHelp  = argv.h || argv.help || args.length < 3;
+  , args      = argv._;
 
-/**
- * Display the usage information and
- * exit the program.
- */
-function displayUsage () {
-  var usage = fs.readFileSync(path.resolve(__dirname, 'usage.txt'), 'utf8');
+// Show the usage information if requested
+if (argv.h || argv.help || args.length < 3) {
+  var fp = path.resolve(__dirname, 'usage.txt')
+    , usage = fs.readFileSync(fp, 'utf8');
+
   process.stdout.write(usage);
   process.exit(1);
 }
 
-/**
- * Validate the input arguments. Write to stderr
- * and exit on malformed inputs.
- */
-function valid (command, uri, directory) {
-  if (typeof hoax[command] != 'function') {
-    process.stderr.write('Invalid command.');
-    process.exit(1);
-  }
-  if (!fs.statSync(directory).isDirectory()) {
-    process.stderr.write('Invalid directory.');
-    process.exit(1);
-  }
-  return true;
-}
-
-if (showHelp) return displayUsage();
-
 var command = args.shift()
   , uri = args.shift()
-  , directory = args.join(' ');
+  , dir = args.join(' ');
 
-if (valid(command, uri, directory)) {
-  return hoax[command].call(null, uri, directory);
+// Verify inputs
+try {
+  // Check the command
+  if (typeof hoax[command] != 'function') {
+    throw new Error('Invalid command.');
+  }
+  // Check the uri. Errors on failure.
+  check(uri).isUrl();
+  // Check the directory
+  if (!fs.statSync(dir).isDirectory()) {
+    throw new Error('Invalid directory.');
+  }
+} catch (e) {
+  return utils.error(e.message);
 }
+
+// Run it
+hoax[command].call(null, uri, dir);
 

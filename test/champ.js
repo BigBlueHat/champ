@@ -9,6 +9,7 @@ var path    = require('path')
 var fixtures = path.resolve(__dirname, './fixtures')
   , flow = path.resolve(__dirname, './fixtures/01 Uppermost - Flow.mp3')
   , norm = path.resolve(__dirname, './fixtures/02 Uppermost - The Norm.mp3')
+  , app = path.resolve(__dirname, './fixtures/app')
   , testRemote = 'http://localhost:5984/champtests';
 
 // So we don't clutter the test results
@@ -28,6 +29,15 @@ describe('Core functionality', function () {
 
   after(function (done) {
     Pouch.destroy(testRemote, done);
+  });
+
+  it('Can glob a directory looking for .mp3 files', function (done) {
+    champ.readDir(fixtures, function (err, data) {
+      if (err) return done(err);
+      expect(data).to.have.length(2);
+      expect(data[0]).to.equal(flow);
+      done();
+    });
   });
 
   it('Should be able to read id3 tags with Mutagen', function (done) {
@@ -64,12 +74,16 @@ describe('Core functionality', function () {
     });
   });
 
-  it('Can glob a directory looking for .mp3 files', function (done) {
-    champ.readDir(fixtures, function (err, data) {
+  it('Can push a couchapp from a directory', function (done) {
+    champ.pushApp(db, app, function (err, res) {
       if (err) return done(err);
-      expect(data).to.have.length(2);
-      expect(data[0]).to.equal(flow);
-      done();
+      expect(res.ok).to.equal(true);
+      expect(res.id).to.equal('_design/champ');
+      db.getAttachment('_design/champ/index.html', function (err, res) {
+        if (err) return done(err);
+        expect(res.toString()).to.equal('omgwtfbbq\n');
+        done();
+      });
     });
   });
 

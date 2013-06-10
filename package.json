@@ -21,7 +21,7 @@
       "url": "https://github.com/nick-thompson/champ/blob/master/LICENSE"
     }
   ],
-  "main": "lib/index",
+  "main": "./lib/index",
   "bin": {
     "champ": "./bin/champ"
   },

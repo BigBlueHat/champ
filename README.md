@@ -1,4 +1,4 @@
-# Champ [![Build Status](https://secure.travis-ci.org/nick-thompson/hoax.png?branch=master)](http://travis-ci.org/nick-thompson/hoax)
+# Champ [![Build Status](https://secure.travis-ci.org/nick-thompson/champ.png?branch=master)](http://travis-ci.org/nick-thompson/champ)
 (Couch + Amp =) Champ is a personal music streaming server with offline caching capabilities.
 
 ## Getting Started

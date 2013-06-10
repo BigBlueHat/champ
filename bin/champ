@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var champ      = require('..')
+var champ     = require('..')
   , fs        = require('fs')
   , path      = require('path')
   , check     = require('validator').check

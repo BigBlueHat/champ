@@ -28,6 +28,7 @@ exports.loadModule = function (filePath, mocks) {
       return mocks[name] || require(resolveModule(name));
     },
     console: console,
+    process: process,
     __dirname: __dirname,
     exports: exports,
     module: {

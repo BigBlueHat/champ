@@ -1,5 +1,5 @@
 
-   Usage: hoax [options] {new, update} uri directory
+   Usage: champ [options] {new, update} uri directory
 
    Commands:
      new                  Create a new database instance and import all valid

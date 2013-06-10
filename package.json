@@ -1,8 +1,8 @@
 {
-  "name": "hoax",
+  "name": "champ",
   "description": "A personal music streaming server with offline caching capabilities.",
   "version": "0.1.0",
-  "homepage": "https://github.com/nick-thompson/hoax",
+  "homepage": "https://github.com/nick-thompson/champ",
   "author": {
     "name": "Nick Thompson",
     "email": "ncthom91@gmail.com",
@@ -10,20 +10,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/nick-thompson/hoax.git"
+    "url": "git://github.com/nick-thompson/champ.git"
   },
   "bugs": {
-    "url": "https://github.com/nick-thompson/hoax/issues"
+    "url": "https://github.com/nick-thompson/champ/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/nick-thompson/hoax/blob/master/LICENSE-MIT"
+      "url": "https://github.com/nick-thompson/champ/blob/master/LICENSE"
     }
   ],
   "main": "lib/index",
   "bin": {
-    "hoax": "./bin/hoax"
+    "champ": "./bin/champ"
   },
   "engines": {
     "node": ">= 0.8.0"

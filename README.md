@@ -1,8 +1,8 @@
-# Hoax [![Build Status](https://secure.travis-ci.org/nick-thompson/hoax.png?branch=master)](http://travis-ci.org/nick-thompson/hoax)
-A personal music streaming server with offline caching capabilities.
+# Champ [![Build Status](https://secure.travis-ci.org/nick-thompson/hoax.png?branch=master)](http://travis-ci.org/nick-thompson/hoax)
+(Couch + Amp =) Champ is a personal music streaming server with offline caching capabilities.
 
 ## Getting Started
-Before you try building a Hoax server with your music collection, you
+Before you try building a Champ server with your music collection, you
 will first want to make sure it's all properly tagged. Currently, Hoax
 relies on the ability to find MusicBrainz properties on the metadata tags
 attached to your songs. It is highly recommended that you download
@@ -12,13 +12,13 @@ follow the instructions to
 
 ## Install
 ```
-npm install -g hoax
+npm install -g champ
 ```
 
 ## Usage
 ```
 
-   Usage: hoax [options] {new, update} uri directory
+   Usage: champ [options] {new, update} uri directory
 
    Commands:
      new                  Create a new database instance and import all valid
@@ -36,23 +36,23 @@ npm install -g hoax
 ```
 
 ### New
-Create a new Hoax database with music from your collection.
+Create a new Champ database with music from your collection.
 ```
-hoax new http://localhost:5984/myhoax ~/path/to/my/music/library
+champ new http://localhost:5984/mychamp ~/path/to/my/music/library
 ```
 
 ### Update (Not Yet Implemented)
-Update an existing Hoax database when your library has been updated.
+Update an existing Champ database when your library has been updated.
 ```
-hoax update http://localhost:5984/myhoax ~/path/to/my/music/library
+champ update http://localhost:5984/mychamp ~/path/to/my/music/library
 ```
 
 ## Contributing
 Want to help me make this bad boy awesome? Great! Here's the rundown:
 
-* Hoax pushes everything through CouchDB.
+* Champ pushes everything through CouchDB.
 * The player itself is just a CouchApp.
-* Hoax uses PouchDB for interfacing with CouchDB from the client.
+* Champ uses PouchDB for interfacing with CouchDB from the client.
     * Allows for easy client-side caching.
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.

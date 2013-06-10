@@ -7,7 +7,7 @@ function LibraryController($scope) {
 
   db.changes({
     include_docs: true,
-    filter: 'hoax/meta',
+    filter: 'champ/meta',
     complete: function (err, response) {
 
       // Organize the response into a library heirarchy

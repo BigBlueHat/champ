@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var hoax      = require('..')
+var champ      = require('..')
   , fs        = require('fs')
   , path      = require('path')
   , check     = require('validator').check
@@ -18,7 +18,7 @@ if (argv.h || argv.help || args.length < 3) {
 
 // Adjust the verbosity if needed
 if (argv.q || argv.quiet) {
-  hoax.utils.setVerbosity(0);
+  champ.utils.setVerbosity(0);
 }
 
 var command = args.shift()
@@ -28,7 +28,7 @@ var command = args.shift()
 // Verify inputs
 try {
   // Check the command
-  if (typeof hoax[command] != 'function') {
+  if (typeof champ[command] != 'function') {
     throw new Error('invalid command');
   }
   // Check the uri. Errors on failure.
@@ -38,16 +38,16 @@ try {
     throw new Error('invalid directory');
   }
 } catch (e) {
-  return hoax.utils.error(e.message.toLowerCase());
+  return champ.utils.error(e.message.toLowerCase());
 }
 
 // Run it
-hoax[command].call(null, uri, dir, function (err) {
+champ[command].call(null, uri, dir, function (err) {
   if (err) {
     var msg = (err.message || JSON.stringify(err)).toLowerCase();
-    hoax.utils.error(msg);
+    champ.utils.error(msg);
   } else {
-    hoax.utils.log('done!');
+    champ.utils.log('done!');
   }
 });
 

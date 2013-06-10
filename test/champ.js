@@ -1,7 +1,7 @@
 
 var path    = require('path')
   , load    = require('./load').loadModule
-  , hoax    = load(path.resolve(__dirname, '../lib/index.js'))
+  , champ    = load(path.resolve(__dirname, '../lib/index.js'))
   , assert  = require('assert');
 
 // Test fixtures
@@ -12,7 +12,7 @@ var fixtures = path.resolve(__dirname, './fixtures')
 describe('Core functionality', function () {
 
   it('Should be able to read id3 tags with Mutagen', function () {
-    hoax.readTag(flow, function (err, data) {
+    champ.readTag(flow, function (err, data) {
       assert.equal('Flow', data.title);
       assert.equal('Uppermost', data.artist);
       assert.equal('21f965c6-5463-44a7-9897-7d9536d2db86', data._id);
@@ -20,7 +20,7 @@ describe('Core functionality', function () {
   });
 
   it('Can glob a directory looking for .mp3 files', function () {
-    hoax.readDir(fixtures, function (err, data) {
+    champ.readDir(fixtures, function (err, data) {
       assert.equal(2, data.length);
       assert.equal(flow, data[0]);
     });

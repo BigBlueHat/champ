@@ -75,7 +75,7 @@ describe('Core functionality', function () {
   });
 
   it('Can push a couchapp from a directory', function (done) {
-    champ.pushApp(db, app, function (err, res) {
+    champ.pushApp(db, app, null, function (err, res) {
       if (err) return done(err);
       expect(res.ok).to.equal(true);
       expect(res.id).to.equal('_design/champ');

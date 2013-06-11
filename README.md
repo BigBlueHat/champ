@@ -18,7 +18,7 @@ npm install -g champ
 ## Usage
 ```
 
-   Usage: champ [options] {new, update} uri directory
+   Usage: champ [options] {create, update} uri directory
 
    Commands:
      create               Create a new database instance and import all valid

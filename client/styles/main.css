@@ -1,28 +1,57 @@
 
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+
 * {
   margin: 0;
   padding: 0;
-}
-
-.library {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  font-size: 12px;
-}
-
-.track {
-  margin: 2px;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-left: 4px solid #ccc;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
   color: #666;
 }
 
-.title {
-  color: #999;
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
-a {
-  text-decoration: none;
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shadow {
+  -moz-box-shadow: inset 1px 1px 2px rgb(205, 235, 253);
+  -webkit-box-shadow: inset 1px 1px 2px rgb(205, 235, 253);
+  box-shadow: inset 1px 1px 2px rgb(205, 235, 253);
+}
+
+.library {
+  padding: 12px;
+  max-width: 480px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.cell {
+  border: 1px solid rgb(190, 212, 224);
+  border-bottom: 0;
+  padding: 12px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.cell:last-child {
+  border-bottom: 1px solid rgb(190, 212, 224);
+}
+
+.album {
+  padding-left: 36px;
+}
+
+.track {
+  padding-left: 60px;
 }

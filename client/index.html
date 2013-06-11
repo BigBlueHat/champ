@@ -27,18 +27,18 @@
 
   <ul class="library" ng-controller="LibraryController">
     <li ng-repeat="(artist, catalog) in library">
-      <div class="artist">
-        <strong>{{ artist }}</strong>
+      <div class="cell">
+        {{ artist }}
       </div>
-      <ul class="catalog">
+      <ul>
         <li ng-repeat="(album, tracks) in catalog">
-          <div class="album">
-            <strong>{{ album }}</strong>
+          <div class="cell shadow album">
+            {{ album }}
           </div>
-          <ul class="album">
+          <ul>
             <li ng-repeat="track in tracks">
-              <div class="track">
-                <strong>{{ track.title }}</strong>
+              <div class="cell shadow track">
+                {{ track.title }}
               </div>
             </li>
           </ul>

@@ -14,6 +14,7 @@ follow the instructions to
 ```
 npm install -g champ
 ```
+*Note*: You will also need Python 2.x or greater installed on your system.
 
 ## Usage
 ```

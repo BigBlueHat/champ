@@ -2,7 +2,7 @@
    Usage: champ [options] {new, update} uri directory
 
    Commands:
-     new                  Create a new database instance and import all valid
+     create               Create a new database instance and import all valid
                           tracks from the supplied directory.
      update               Update an existing database instance with music from
                           the supplied directory.

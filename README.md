@@ -21,7 +21,7 @@ npm install -g champ
    Usage: champ [options] {new, update} uri directory
 
    Commands:
-     new                  Create a new database instance and import all valid
+     create               Create a new database instance and import all valid
                           tracks from the supplied directory.
      update               Update an existing database instance with music from
                           the supplied directory.
@@ -32,13 +32,14 @@ npm install -g champ
 
    Options:
      -h, --help           output usage information
+     -q, --quiet          Supress output to the console.
 
 ```
 
-### New
+### Create
 Create a new Champ database with music from your collection.
 ```
-champ new http://localhost:5984/mychamp ~/path/to/my/music/library
+champ create http://localhost:5984/mychamp ~/path/to/my/music/library
 ```
 
 ### Update (Not Yet Implemented)

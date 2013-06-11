@@ -19,34 +19,34 @@ npm install -g champ
 ## Usage
 ```
 
-   Usage: champ [options] {create, update} uri directory
+   Usage: champ [options] {push, download} uri directory
 
    Commands:
-     create               Create a new database instance and import all valid
+     push                 Create or update a database instance and import all valid
                           tracks from the supplied directory.
-     update               Update an existing database instance with music from
-                          the supplied directory.
+     download             Fetch all tracks from a database and build a local directory
+                          structure with the file library.
 
    Arguments:
      uri                  Database endpoint location.
      directory            Root directory of your music folder.
 
    Options:
-     -h, --help           output usage information
+     -h, --help           Output usage information.
      -q, --quiet          Supress output to the console.
 
 ```
 
-### Create
-Create a new Champ database with music from your collection.
+### Push
+Create or update a Champ database with music from your collection.
 ```
-champ create http://localhost:5984/mychamp ~/path/to/my/music/library
+champ push http://localhost:5984/mychamp ~/path/to/my/music/library
 ```
 
-### Update (Not Yet Implemented)
-Update an existing Champ database when your library has been updated.
+### Download (Not Yet Implemented)
+Download tracks from a database and build a local directory tree from the library.
 ```
-champ update http://localhost:5984/mychamp ~/path/to/my/music/library
+champ download http://localhost:5984/mychamp ~/path/to/my/download/folder
 ```
 
 ## Contributing

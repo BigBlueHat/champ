@@ -1,11 +1,11 @@
 
-   Usage: champ [options] {create, update} uri directory
+   Usage: champ [options] {push, download} uri directory
 
    Commands:
-     create               Create a new database instance and import all valid
+     push                 Create or update a database instance and import all valid
                           tracks from the supplied directory.
-     update               Update an existing database instance with music from
-                          the supplied directory.
+     download             Fetch all tracks from a database and build a local directory
+                          structure with the file library.
 
    Arguments:
      uri                  Database endpoint location.

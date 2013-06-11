@@ -13,6 +13,7 @@
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="styles/base-min.css">
   <link rel="stylesheet" type="text/css" href="styles/buttons-min.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
@@ -28,17 +29,32 @@
   <ul class="library" ng-controller="LibraryController">
     <li ng-repeat="(artist, catalog) in library">
       <div class="cell">
+        <i class="icon-angle-down icon"></i>
         {{ artist }}
+        <div class="control">
+          <i class="icon-upload-alt icon"></i>
+          <i class="icon-download-alt icon"></i>
+        </div>
       </div>
       <ul>
         <li ng-repeat="(album, tracks) in catalog">
           <div class="cell shadow album">
+            <i class="icon-angle-down icon"></i>
             {{ album }}
+            <div class="control">
+              <i class="icon-upload-alt icon"></i>
+              <i class="icon-download-alt icon"></i>
+            </div>
           </div>
           <ul>
             <li ng-repeat="track in tracks">
               <div class="cell shadow track">
                 {{ track.title }}
+                <div class="control">
+                  <i class="icon-play icon"></i>
+                  <i class="icon-upload-alt icon"></i>
+                  <i class="icon-download-alt icon"></i>
+                </div>
               </div>
             </li>
           </ul>

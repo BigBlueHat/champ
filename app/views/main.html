@@ -1,9 +1,16 @@
-<div class="hero-unit">
-  <h1>'Allo, 'Allo!</h1>
-  <p>You now have</p>
-  <ul>
-      <li ng-repeat="thing in awesomeThings">{{thing}}</li>
-  </ul>
-  <p>installed.</p>
-  <h3>Enjoy coding! - Yeoman</h3>
-</div>
+<table class="table library">
+  <tr ng-repeat="track in library">
+    <td class="title">
+      {{ track.doc.title }}
+    </td>
+    <td class="album">
+      {{ track.doc.album }}
+    </td>
+    <td class="artist">
+      {{ track.doc.artist }}
+    </td>
+    <td class="controls">
+      Controls
+    </td>
+  </tr>
+</table>

@@ -1,71 +1,36 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 <head>
 
-	<meta charset="utf-8">
-	<title>Your Page Title Here :)</title>
-	<meta name="description" content="">
-	<meta name="author" content="">
+  <meta charset="utf-8">
+  <title>Champ // Personal Music Server</title>
+  <meta name="description" content="Champ personal music server">
+  <meta name="author" content="Nick Thompson">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-	<!--[if lt IE 9]>
-		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
 
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="styles/base-min.css">
-  <link rel="stylesheet" type="text/css" href="styles/buttons-min.css">
+  <link rel="stylesheet" type="text/css" href="vendor/styles/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="vendor/styles/flat-ui.css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 
-	<link rel="shortcut icon" href="images/favicon.ico">
-	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+  <link rel="shortcut icon" href="images/favicon.ico">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
 
 </head>
-<body>
+<body ng-app="champ">
 
-  <ul class="library" ng-controller="LibraryController">
-    <li ng-repeat="(artist, catalog) in library">
-      <div class="cell">
-        <i class="icon-angle-down icon"></i>
-        {{ artist }}
-        <div class="control">
-          <i class="icon-upload-alt icon"></i>
-          <i class="icon-download-alt icon"></i>
-        </div>
-      </div>
-      <ul>
-        <li ng-repeat="(album, tracks) in catalog">
-          <div class="cell shadow album">
-            <i class="icon-angle-down icon"></i>
-            {{ album }}
-            <div class="control">
-              <i class="icon-upload-alt icon"></i>
-              <i class="icon-download-alt icon"></i>
-            </div>
-          </div>
-          <ul>
-            <li ng-repeat="track in tracks">
-              <div class="cell shadow track">
-                {{ track.title }}
-                <div class="control">
-                  <i class="icon-play icon"></i>
-                  <i class="icon-upload-alt icon"></i>
-                  <i class="icon-download-alt icon"></i>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </li>
-  </ul>
+<div class="content" ng-view=""></div>
 
-  <script type="text/javascript" src="scripts/vendor/angular.min.js"></script>
-  <script type="text/javascript" src="scripts/vendor/pouchdb-nightly.min.js"></script>
-  <script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="vendor/scripts/angular.js"></script>
+<script type="text/javascript" src="vendor/scripts/pouchdb-nightly.js"></script>
+<script type="text/javascript" src="scripts/app.js"></script>
 
 </body>
 </html>

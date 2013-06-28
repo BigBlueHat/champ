@@ -19,7 +19,8 @@
   top: 1px;
 }
 
-a {
+.link {
   text-decoration: none;
   padding: 8px;
+  cursor: pointer;
 }

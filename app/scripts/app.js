@@ -13,6 +13,7 @@ angular.module('champ', []).config(function ($routeProvider) {
 });
 
 angular.module('champ').controller('MainCtrl', function ($scope) {
+
   db.changes({
     include_docs: true,
     filter: 'champ/meta',
@@ -24,4 +25,24 @@ angular.module('champ').controller('MainCtrl', function ($scope) {
       });
     }
   });
+
+  $scope.play = function (id) {
+    id = id.split(':')[1];
+    var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
+    new Howl({
+      urls: [url]
+    }).play();
+  };
+
+  $scope.pause = function () {
+    alert('pause');
+  };
+
+  $scope.cache = function () {
+    alert('cache!');
+  };
+
+  $scope.release = function () {
+    alert('uncache!');
+  };
 });

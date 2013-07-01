@@ -30,7 +30,8 @@ angular.module('champ').controller('MainCtrl', function ($scope) {
     id = id.split(':')[1];
     var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
     new Howl({
-      urls: [url]
+      urls: [url],
+      buffer: true
     }).play();
   };
 

@@ -18,28 +18,51 @@ angular.module('champ').controller('MainCtrl', function ($scope) {
     include_docs: true,
     filter: 'champ/meta',
     complete: function (err, response) {
+      if (err) return alert(JSON.stringify(err));
+      var library = response.results.map(function (result) {
+        return result.doc;
+      });
+
       $scope.$apply(function () {
-        $scope.library = response.results.map(function (result) {
-          return result.doc;
+        $scope.library = library;
+        $scope.isPlaying = false;
+        $scope.libIndex = 0;
+        var id = $scope.library[$scope.libIndex]['_id'].split(':')[1];
+        var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
+        $scope.currentTrack = new Howl({
+          urls: ['http://localhost:5984/champ2/' + id + '/file.mp3'],
+          buffer: true
         });
       });
+
     }
   });
 
   $scope.isPlaying = false;
 
   $scope.play = function (id) {
-    $scope.isPlaying = true;
     id = id.split(':')[1];
     var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
-    new Howl({
+    $scope.isPlaying = true;
+    $scope.currentTrack = new Howl({
       urls: [url],
       buffer: true
-    }).play();
+    });
+    $scope.resume();
   };
 
   $scope.pause = function () {
-    alert('pause');
+    $scope.isPlaying = false;
+    $scope.currentTrack.pause();
+  };
+
+  $scope.resume = function () {
+    $scope.isPlaying = true;
+    $scope.currentTrack.play();
+  };
+
+  $scope.toggle = function () {
+    $scope.isPlaying ? $scope.pause() : $scope.resume();
   };
 
   $scope.cache = function () {

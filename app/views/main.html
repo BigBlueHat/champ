@@ -1,19 +1,28 @@
-<table class="table table-hover library">
-  <tr ng-repeat="track in library" ng-click="play(track._id)">
-    <td class="title">
-      {{ track.title }}
-    </td>
-    <td class="album">
-      {{ track.album }}
-    </td>
-    <td class="artist">
-      {{ track.artist }}
-    </td>
-    <td class="controls">
-      <ul>
-        <li><a class="link" ng-click="cache()"><i class="icon-upload-alt"></i></a></li>
-        <li><a class="link" ng-click="release()"><i class="icon-download-alt"></i></a></li>
-      </ul>
-    </td>
-  </tr>
-</table>
+<div class="content">
+  <table class="table table-hover library">
+    <tr ng-repeat="track in library" ng-click="play(track._id)">
+      <td class="title">
+        {{ track.title }}
+      </td>
+      <td class="album">
+        {{ track.album }}
+      </td>
+      <td class="artist">
+        {{ track.artist }}
+      </td>
+      <td class="controls">
+        <ul>
+          <li><a class="link" ng-click="cache()"><i class="icon-upload-alt"></i></a></li>
+          <li><a class="link" ng-click="release()"><i class="icon-download-alt"></i></a></li>
+        </ul>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="footer">
+  <a href="#"><i class="icon-backward"></i></a>
+  <a href="#">
+    <i ng-class="{'icon-play': !isPlaying, 'icon-pause': isPlaying}"></i>
+  </a>
+  <a href="#"><i class="icon-forward"></i></a>
+</div>

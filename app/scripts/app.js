@@ -26,7 +26,10 @@ angular.module('champ').controller('MainCtrl', function ($scope) {
     }
   });
 
+  $scope.isPlaying = false;
+
   $scope.play = function (id) {
+    $scope.isPlaying = true;
     id = id.split(':')[1];
     var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
     new Howl({

@@ -15,7 +15,6 @@ app = angular.module('champ', []).config(function ($routeProvider) {
 
 // Define a PouchDB service
 app.factory('remote', function () {
-  Pouch.enableAllDbs = true;
   return new Pouch(remoteApi);
 });
 

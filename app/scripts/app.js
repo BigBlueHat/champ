@@ -1,6 +1,5 @@
 
 var remoteApi = window.location.origin + '/api'
-  , remoteStreamApi = window.location.origin + '/stream/'
   , app;
 
 // Create and configure Angular app
@@ -21,55 +20,51 @@ app.factory('remote', function () {
 // Define the main controller
 app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
 
+  var fid = function (mid) {
+    return mid.split(':')[1];
+  };
+
+  var streamUrl = function (mid) {
+    return remoteApi + '/' + fid(mid) + '/file.mp3';
+  };
+
   remote.changes({
     include_docs: true,
     filter: 'champ/meta',
-    complete: function (err, response) {
+    complete: function (err, res) {
       if (err) return alert(JSON.stringify(err));
-      var library = response.results.map(function (result) {
-        return result.doc;
-      });
-
       $scope.$apply(function () {
-        $scope.library = library;
+
+        // Prepare the scope
+        $scope.library = res.results.map(function (r) { return r.doc; });
         $scope.isPlaying = false;
         $scope.libIndex = 0;
-        var id = $scope.library[$scope.libIndex]['_id'].split(':')[1];
-        var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
+
+        // Assign a default current track
+        var meta = $scope.library[$scope.libIndex];
         $scope.currentTrack = new Howl({
-          urls: ['http://localhost:5984/champ2/' + id + '/file.mp3'],
+          urls: [streamUrl(meta._id)],
           buffer: true
         });
-      });
+        $scope.currentTrack.metadata = meta;
 
+      });
     }
   });
-
-  $scope.isPlaying = false;
 
   $scope.play = function (id) {
     id = id.split(':')[1];
     var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
-    $scope.isPlaying = true;
     $scope.currentTrack = new Howl({
       urls: [url],
       buffer: true
     });
-    $scope.resume();
-  };
-
-  $scope.pause = function () {
-    $scope.isPlaying = false;
-    $scope.currentTrack.pause();
-  };
-
-  $scope.resume = function () {
-    $scope.isPlaying = true;
-    $scope.currentTrack.play();
+    $scope.toggle();
   };
 
   $scope.toggle = function () {
-    $scope.isPlaying ? $scope.pause() : $scope.resume();
+    $scope.isPlaying ? $scope.currentTrack.pause() : $scope.currentTrack.play();
+    $scope.isPlaying = !$scope.isPlaying;
   };
 
   $scope.cache = function () {
@@ -79,4 +74,5 @@ app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
   $scope.release = function () {
     alert('uncache!');
   };
+
 }]);

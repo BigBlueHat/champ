@@ -1,6 +1,6 @@
 <div class="content">
   <table class="table table-hover library">
-    <tr ng-repeat="track in library" ng-click="play(track._id)">
+    <tr ng-repeat="track in library" ng-click="play($index)">
       <td class="title">
         {{ track.title }}
       </td>

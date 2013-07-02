@@ -34,35 +34,32 @@ app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
     complete: function (err, res) {
       if (err) return alert(JSON.stringify(err));
       $scope.$apply(function () {
-
-        // Prepare the scope
         $scope.library = res.results.map(function (r) { return r.doc; });
         $scope.isPlaying = false;
         $scope.libIndex = 0;
-
-        // Assign a default current track
-        var meta = $scope.library[$scope.libIndex];
-        $scope.currentTrack = new Howl({
-          urls: [streamUrl(meta._id)],
-          buffer: true
-        });
-        $scope.currentTrack.metadata = meta;
-
       });
     }
   });
 
-  $scope.play = function (id) {
-    id = id.split(':')[1];
-    var url = 'http://localhost:5984/champ2/' + id + '/file.mp3';
+  $scope.play = function (index) {
+    var meta = $scope.library[index];
+    $scope.isPlaying ? $scope.toggle() : null;
+    $scope.libIndex = index;
     $scope.currentTrack = new Howl({
-      urls: [url],
-      buffer: true
+      urls: [streamUrl(meta._id)],
+      buffer: true,
+      onend: function () {
+        if (++index < $scope.library.length) {
+          $scope.play(index);
+        }
+      }
     });
+    $scope.currentTrack.metadata = meta;
     $scope.toggle();
   };
 
   $scope.toggle = function () {
+    if (!$scope.currentTrack) return $scope.play(0);
     $scope.isPlaying ? $scope.currentTrack.pause() : $scope.currentTrack.play();
     $scope.isPlaying = !$scope.isPlaying;
   };

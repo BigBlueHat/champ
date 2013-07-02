@@ -1,7 +1,8 @@
 
-'use strict';
+var api = window.location.origin + '/api'
+  , streamApi = window.location.origin + '/stream/';
 
-var db = new Pouch('http://localhost:5984/champ2');
+var db = new Pouch(api);
 
 angular.module('champ', []).config(function ($routeProvider) {
   $routeProvider.when('/', {

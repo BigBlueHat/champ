@@ -1,10 +1,10 @@
 
-var api = window.location.origin + '/api'
-  , streamApi = window.location.origin + '/stream/';
+var remoteApi = window.location.origin + '/api'
+  , remoteStreamApi = window.location.origin + '/stream/'
+  , app;
 
-var db = new Pouch(api);
-
-angular.module('champ', []).config(function ($routeProvider) {
+// Create and configure Angular app
+app = angular.module('champ', []).config(function ($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'views/main.html',
     controller: 'MainCtrl'
@@ -13,9 +13,16 @@ angular.module('champ', []).config(function ($routeProvider) {
   });
 });
 
-angular.module('champ').controller('MainCtrl', function ($scope) {
+// Define a PouchDB service
+app.factory('remote', function () {
+  Pouch.enableAllDbs = true;
+  return new Pouch(remoteApi);
+});
 
-  db.changes({
+// Define the main controller
+app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
+
+  remote.changes({
     include_docs: true,
     filter: 'champ/meta',
     complete: function (err, response) {
@@ -73,4 +80,4 @@ angular.module('champ').controller('MainCtrl', function ($scope) {
   $scope.release = function () {
     alert('uncache!');
   };
-});
+}]);

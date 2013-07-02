@@ -20,14 +20,6 @@ app.factory('remote', function () {
 // Define the main controller
 app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
 
-  var fid = function (mid) {
-    return mid.split(':')[1];
-  };
-
-  var streamUrl = function (mid) {
-    return remoteApi + '/' + fid(mid) + '/file.mp3';
-  };
-
   remote.changes({
     include_docs: true,
     filter: 'champ/meta',
@@ -46,11 +38,15 @@ app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
     $scope.isPlaying ? $scope.toggle() : null;
     $scope.libIndex = index;
     $scope.currentTrack = new Howl({
-      urls: [streamUrl(meta._id)],
+      urls: [remoteApi + '/' + meta._id.split(':')[1] + '/file.mp3'],
       buffer: true,
       onend: function () {
         if (++index < $scope.library.length) {
           $scope.play(index);
+        } else {
+          // This doesn't work... why?
+          $scope.toggle();
+          $scope.libIndex = 0;
         }
       }
     });

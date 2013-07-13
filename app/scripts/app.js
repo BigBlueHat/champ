@@ -18,19 +18,17 @@ app.factory('remote', function () {
 });
 
 // Define the main controller
-app.controller('MainCtrl', ['$scope', 'remote', function ($scope, remote) {
+app.controller('MainCtrl', ['$scope', '$http', 'remote', function ($scope, $http, remote) {
 
-  remote.changes({
-    include_docs: true,
-    filter: 'champ/meta',
-    complete: function (err, res) {
-      if (err) return alert(JSON.stringify(err));
-      $scope.$apply(function () {
-        $scope.library = res.results.map(function (r) { return r.doc; });
-        $scope.isPlaying = false;
-        $scope.libIndex = 0;
-      });
-    }
+  $http({
+    method: 'GET',
+    url: window.location.origin + '/_view/meta'
+  }).success(function (data, status, headers, config) {
+    $scope.library = data.rows.map(function (r) { return r.value; });
+    $scope.isPlaying = false;
+    $scope.libIndex = 0;
+  }).error(function (data, status, headers, config) {
+    alert(JSON.stringify(data));
   });
 
   $scope.play = function (index) {

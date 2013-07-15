@@ -1,6 +1,6 @@
 
 var path    = require('path')
-  , Pouch   = require('pouchdb')
+  , nano    = require('nano')('http://localhost:5984')
   , load    = require('./load').loadModule
   , champ   = load(path.resolve(__dirname, '../lib/index.js'))
   , expect  = require('chai').expect;
@@ -10,7 +10,7 @@ var fixtures = path.resolve(__dirname, './fixtures')
   , flow = path.resolve(__dirname, './fixtures/01 Uppermost - Flow.mp3')
   , norm = path.resolve(__dirname, './fixtures/02 Uppermost - The Norm.mp3')
   , app = path.resolve(__dirname, './fixtures/app')
-  , testRemote = 'http://localhost:5984/champtests';
+  , dbName = 'champtests';
 
 // So we don't clutter the test results
 champ.utils.setVerbosity(0);
@@ -20,15 +20,15 @@ describe('Core functionality', function () {
   var db;
 
   before(function (done) {
-    Pouch(testRemote, function (err, pouch) {
+    nano.db.create(dbName, function (err, res) {
       if (err) return done(err);
-      db = pouch;
+      db = nano.db.use(dbName);
       done();
     });
   });
 
   after(function (done) {
-    Pouch.destroy(testRemote, done);
+    nano.db.destroy(dbName, done);
   });
 
   it('Can glob a directory looking for .mp3 files', function (done) {
@@ -61,25 +61,12 @@ describe('Core functionality', function () {
     });
   });
 
-  it('Should save two documents for each track', function (done) {
-    champ.getTrackData(flow, function (err, metadata, b64string) {
-      if (err) return done(err);
-      champ.pushTrack(db, metadata, b64string, function (err, res) {
-        if (err) return done(err);
-        expect(res).to.have.length(2);
-        expect(res[0].id).to.equal('m:21f965c6-5463-44a7-9897-7d9536d2db86');
-        expect(res[1].id).to.equal('21f965c6-5463-44a7-9897-7d9536d2db86');
-        done();
-      });
-    });
-  });
-
   it('Can push a couchapp from a directory', function (done) {
     champ.pushApp(db, app, null, function (err, res) {
       if (err) return done(err);
       expect(res.ok).to.equal(true);
       expect(res.id).to.equal('_design/champ');
-      db.getAttachment('_design/champ/index.html', function (err, res) {
+      db.attachment.get('_design/champ', 'index.html', function (err, res) {
         if (err) return done(err);
         expect(res.toString()).to.equal('omgwtfbbq\n');
         done();

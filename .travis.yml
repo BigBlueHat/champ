@@ -7,5 +7,3 @@ services:
 branches:
   only:
     - master
-before_script:
-  - curl -X PUT localhost:5984/champtests

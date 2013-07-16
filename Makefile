@@ -2,7 +2,7 @@
 all: test dev clean
 
 test:
-	@./node_modules/.bin/mocha --reporter spec
+	@./node_modules/.bin/mocha --reporter spec --timeout 10000
 
 dev:
 	@curl -silent http://localhost:5984 > /dev/null || couchdb -b

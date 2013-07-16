@@ -10,6 +10,7 @@ var fixtures = path.resolve(__dirname, './fixtures')
   , flow = path.resolve(__dirname, './fixtures/01 Uppermost - Flow.mp3')
   , norm = path.resolve(__dirname, './fixtures/02 Uppermost - The Norm.mp3')
   , app = path.resolve(__dirname, './fixtures/app')
+  , uri = 'http://localhost:5984/champtests'
   , dbName = 'champtests';
 
 // So we don't clutter the test results
@@ -19,7 +20,7 @@ describe('Core functionality', function () {
 
   var db;
 
-  before(function (done) {
+  beforeEach(function (done) {
     nano.db.create(dbName, function (err, res) {
       if (err) return done(err);
       db = nano.db.use(dbName);
@@ -27,7 +28,7 @@ describe('Core functionality', function () {
     });
   });
 
-  after(function (done) {
+  afterEach(function (done) {
     nano.db.destroy(dbName, done);
   });
 
@@ -69,6 +70,44 @@ describe('Core functionality', function () {
       db.attachment.get('_design/champ', 'index.html', function (err, res) {
         if (err) return done(err);
         expect(res.toString()).to.equal('omgwtfbbq\n');
+        done();
+      });
+    });
+  });
+
+  it('Pushes two docs per track from absolute filepath', function (done) {
+    champ.exports.push(uri, fixtures, function (err) {
+      if (err) return done(err);
+      nano.db.changes(dbName, function (err, res) {
+        if (err) return done(err);
+        var results = res.results
+          , metaDocs = results.filter(function (doc) {
+              return /m:/.test(doc._id)
+          });
+        expect(results.length).to.equal(5);
+        expect(results[0].id).to.equal('_design/champ');
+        expect(results.filter(function (datum) {
+          return /m:/.test(datum.id);
+        }).length).to.equal(2);
+        done();
+      });
+    });
+  });
+
+  it('Pushes two docs per track from relative filepath', function (done) {
+    champ.exports.push(uri, './test/fixtures', function (err) {
+      if (err) return done(err);
+      nano.db.changes(dbName, function (err, res) {
+        if (err) return done(err);
+        var results = res.results
+          , metaDocs = results.filter(function (doc) {
+              return /m:/.test(doc._id)
+          });
+        expect(results.length).to.equal(5);
+        expect(results[0].id).to.equal('_design/champ');
+        expect(results.filter(function (datum) {
+          return /m:/.test(datum.id);
+        }).length).to.equal(2);
         done();
       });
     });

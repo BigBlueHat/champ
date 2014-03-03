@@ -10,8 +10,8 @@ var fixtures = path.resolve(__dirname, './fixtures')
   , flow = path.resolve(__dirname, './fixtures/01 Uppermost - Flow.mp3')
   , norm = path.resolve(__dirname, './fixtures/02 Uppermost - The Norm.mp3')
   , app = path.resolve(__dirname, './fixtures/app')
-  , uri = 'http://localhost:5984/champtests'
-  , dbName = 'champtests';
+  , uri = 'http://admin:passwd@localhost:5984/champ_dev'
+  , dbName = 'champ_dev';
 
 // So we don't clutter the test results
 champ.utils.setVerbosity(0);

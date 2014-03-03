@@ -3,9 +3,10 @@
 
 ## Getting Started
 Before you try building a Champ server with your music collection, you
-will first want to make sure it's all properly tagged. Currently, Hoax
-relies on the ability to find MusicBrainz properties on the metadata tags
-attached to your songs. It is highly recommended that you download
+will first want to make sure it's all properly tagged. Currently, Champ
+relies on the ability to find [MusicBrainz](http://musicbrainz.org/) properties
+on the metadata tags attached to your songs. It is highly recommended that you
+download
 [MusicBrainz' Picard](http://beta.musicbrainz.org/doc/MusicBrainz_Picard) and
 follow the instructions to
 [tag your files](http://beta.musicbrainz.org/doc/How_to_Tag_Files_With_Picard).

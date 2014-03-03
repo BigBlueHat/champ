@@ -1,4 +1,4 @@
-# Champ [![Build Status](https://secure.travis-ci.org/nick-thompson/champ.png?branch=master)](http://travis-ci.org/nick-thompson/champ)
+# Champ [![Build Status](https://secure.travis-ci.org/BigBlueHat/champ.png?branch=master)](http://travis-ci.org/BigBlueHat/champ)
 (Couch + Amp =) Champ is a personal music streaming server with offline caching capabilities.
 
 ## Getting Started
@@ -62,7 +62,7 @@ Want to help me make this bad boy awesome? Great! Here's the rundown:
 In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## License
-Copyright (C) 2012 Nick Thompson
+Copyright (C) 2012-2014 Nick Thompson, Benjamin Young
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of 
 this software and associated documentation files (the "Software"), to deal in 

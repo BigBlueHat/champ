@@ -13,8 +13,10 @@ follow the instructions to
 ## Install
 ```
 npm install -g champ
+pip install -r tag/requirements.txt
 ```
-*Note*: You will also need Python 2.x or greater installed on your system.
+*Note*: You will also need Python 2.x or greater installed on your system for
+reading the tag information out of your audio files.
 
 ## Usage
 ```
